@@ -60,6 +60,7 @@ class AccessPoint(object):
             else:
                 dhcpconf.write("address=/google.com/172.217.5.78\n")
                 dhcpconf.write("address=/clients3.google.com/172.217.11.174\n")
+                dhcpconf.write("address=/clients2.google.com/172.217.11.174\n")
                 dhcpconf.write("address=/#/%s " % (constants.NETWORK_GW_IP, ))
         # catch the exception if dnsmasq is not installed
         try:
