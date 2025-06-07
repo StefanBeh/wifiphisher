@@ -36,7 +36,7 @@ class DowngradeToHTTP(tornado.web.RequestHandler):
 
 class RedirectHandler(tornado.web.RequestHandler):
     def get(self):
-        self.send_response(301)
+        self.send_response(302)
         self.redirect('/login')
 
 class EmptyHandler(tornado.web.RequestHandler):
