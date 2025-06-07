@@ -34,6 +34,17 @@ class DowngradeToHTTP(tornado.web.RequestHandler):
         port = self.application.settings.get('port')
         self.redirect("http://10.0.0.1:{}/".format(port))
 
+class RedirectHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.send_response(302)
+        self.redirect('/login')
+
+class EmptyHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.send_response(200)
+        self.send_header('Content-type', 'text/html')
+        self.end.headers()
+        self.write.("")
 
 class BackendHandler(tornado.web.RequestHandler):
     """
@@ -195,6 +206,11 @@ def runHTTPServer(ip, port, ssl_port, t, em):
             (r"/backend/.*", BackendHandler, {
                 "em": em
             }),
+            (r"/generate_204", RedirectHandler),
+            (r"/hotspot-detect.html", RedirectHandler),
+            (r"/redirect", RedirectHandler),
+            (r"/ncsi.txt", EmptyHandler),
+            (r"/connecttest.txt", EmptyHandler),
             (r"/.*", CaptivePortalHandler),
         ],
         template_path=template.get_path(),
