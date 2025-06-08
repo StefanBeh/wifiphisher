@@ -208,7 +208,7 @@ def runHTTPServer(ip, port, ssl_port, t, em):
             }),
 #            (r"/generate_204", RedirectHandler),
 #            (r"/hotspot-detect.html", RedirectHandler),
-            (r"/login/", CaptivePortalHandler),
+            (r"/login", CaptivePortalHandler),
             (r"/login/.*", CaptivePortalHandler),
 #            (r"/ncsi.txt", EmptyHandler),
 #            (r"/connecttest.txt", EmptyHandler),
