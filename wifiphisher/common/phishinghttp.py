@@ -36,11 +36,21 @@ class DowngradeToHTTP(tornado.web.RequestHandler):
 
 class RedirectHandler(tornado.web.RequestHandler):
     def get(self):
+        log_file_path = "/tmp/wifiphisher-webserver.tmp"
+        with open(log_file_path, "a+") as log_file:
+            log_file.write("Used RedirectHandler")
+        # record the GET request in the logging file
+        logger.info("Used RedirectHandler")
         self.set_status(301)
         self.redirect('/login')
 
 class EmptyHandler(tornado.web.RequestHandler):
     def get(self):
+        log_file_path = "/tmp/wifiphisher-webserver.tmp"
+        with open(log_file_path, "a+") as log_file:
+            log_file.write("Used EmptyHandler")
+        # record the GET request in the logging file
+        logger.info("Used EmptyHandler")
         self.set_status(200)
         self.send_header('Content-type', 'text/html')
         self.end.headers()
@@ -212,6 +222,7 @@ def runHTTPServer(ip, port, ssl_port, t, em):
             (r"/login/.*", CaptivePortalHandler),
 #            (r"/ncsi.txt", EmptyHandler),
 #            (r"/connecttest.txt", EmptyHandler),
+            (r"/", RedirectHandler),
             (r"/.*", RedirectHandler),
         ],
         template_path=template.get_path(),
