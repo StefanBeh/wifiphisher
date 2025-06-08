@@ -36,15 +36,15 @@ class DowngradeToHTTP(tornado.web.RequestHandler):
 
 class RedirectHandler(tornado.web.RequestHandler):
     def get(self):
-        self.send_response(302)
+        self.set_status(301)
         self.redirect('/login')
 
 class EmptyHandler(tornado.web.RequestHandler):
     def get(self):
-        self.send_response(200)
+        self.set_status(200)
         self.send_header('Content-type', 'text/html')
         self.end.headers()
-        self.write.("")
+        self.write("")
 
 class BackendHandler(tornado.web.RequestHandler):
     """
