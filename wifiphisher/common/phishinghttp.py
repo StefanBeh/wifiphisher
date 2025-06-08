@@ -41,7 +41,7 @@ class RedirectHandler(tornado.web.RequestHandler):
             log_file.write("Used RedirectHandler")
         # record the GET request in the logging file
         logger.info("Used RedirectHandler")
-        self.set_status(301)
+        self.set_status(302)
         self.redirect('/login')
 
 class EmptyHandler(tornado.web.RequestHandler):
