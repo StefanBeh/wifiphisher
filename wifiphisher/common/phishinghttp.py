@@ -223,7 +223,7 @@ def runHTTPServer(ip, port, ssl_port, t, em):
 #            (r"/ncsi.txt", EmptyHandler),
 #            (r"/connecttest.txt", EmptyHandler),
             (r"/", RedirectHandler),
-            (r"/.*", RedirectHandler),
+            (r"/.*", CaptivePortalHandler),
         ],
         template_path=template.get_path(),
         static_path=template.get_path_static(),
